@@ -12,8 +12,8 @@ agent: planner
 
 source:
   type: github_issues
-  owner: {{ .github_user }}
-  repo: {{ .github_repo }}
+  owner: << .github_user >>
+  repo: << .github_repo >>
   labels:
     - plan-agent
   state: open
@@ -39,7 +39,7 @@ prompt_template: |
   3. Read the open issues for the relevant crates
 
   Then, based on your analysis, propose the issues that are necessary to implement the plan for the
-  GitHub project at https://github.com/users/{{ .github_user }}/projects/{{ .github_project_id }}. Focus on:
+  GitHub project at https://github.com/users/<< .github_user >>/projects/<< .github_project_id >>. Focus on:
 
   - Missing functionality or incomplete implementations
   - Documentation gaps
@@ -56,10 +56,10 @@ prompt_template: |
   - Use gh issue-ext to add relationships and dependencies
 
   For each proposed issue, create it using:
-    gh issue create --repo {{ .github_user }}/{{ .github_repo }} --title "..." --body "..." --label "..."
+    gh issue create --repo << .github_user >>/<< .github_repo >> --title "..." --body "..." --label "..."
 
   After creating each issue, add it to the project board:
-    gh project item-add {{ .github_project_id }} --owner {{ .github_user }} --url <issue-url>
+    gh project item-add << .github_project_id >> --owner << .github_user >> --url <issue-url>
 
   After adding the issue to the project board, assign the necessary relationships and dependencies.
   Skip this if the issue-ext extension is not available in the gh CLI:
@@ -70,4 +70,4 @@ prompt_template: |
 
   - Create a milestone if the plan has enough issues to justify one, otherwise assign the issues to
     an existing milestone
-  - Close the issue: gh issue close {{source_id}} --repo {{ .github_user }}/{{ .github_repo }}
+  - Close the issue: gh issue close {{source_id}} --repo << .github_user >>/<< .github_repo >>

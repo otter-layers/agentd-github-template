@@ -12,5 +12,9 @@ VAR GITHUB_PROJECT_ID=1234
 
 LAYER https://github.com/otter-layers/agentd-github-template \
   TARGET .agentd/ \
-  TEMPLATE github_user=${GITHUB_USER} github_repo=${GITHUB_REPO} github_project_id=${GITHUB_PROJECT_ID}
+  TEMPLATE \
+    github_user=${GITHUB_USER} \
+    github_repo=${GITHUB_REPO} \
+    github_project_id=${GITHUB_PROJECT_ID} \
+  DELIMS << >>
 ```

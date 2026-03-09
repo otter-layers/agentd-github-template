@@ -27,8 +27,8 @@ system_prompt: |
   - Write tests for new functionality
   - Follow existing code conventions in the project
   - If an issue is unclear or too large, comment on it with questions instead
-    of guessing: gh issue comment <number> --repo {{ .github_user }}/{{ .github_repo }} --body "..."
+    of guessing: gh issue comment <number> --repo << .github_user >>/<< .github_repo >> --body "..."
   - After completing work, close the issue:
-    gh issue close <number> --repo {{ .github_user }}/{{ .github_repo }}
+    gh issue close <number> --repo << .github_user >>/<< .github_repo >>
 
   Use worktrees or branches to isolate your work for each issue.

@@ -1,6 +1,6 @@
 # PR reviewer workflow — polls pull requests and dispatches reviews when labeled.
 #
-# Triggers when a PR in {{ .github_user }}/{{ .github_repo }} has the "review-agent" label applied.
+# Triggers when a PR in << .github_user >>/<< .github_repo >> has the "review-agent" label applied.
 #
 # Usage:
 #   agent apply .agentd/workflows/pull-request-reviewer.yml
@@ -14,8 +14,8 @@ agent: reviewer
 
 source:
   type: github_pull_requests
-  owner: {{ .github_user }}
-  repo: {{ .github_repo }}
+  owner: << .github_user >>
+  repo: << .github_repo >>
   labels:
     - review-agent
   state: open
@@ -34,7 +34,7 @@ prompt_template: |
   {{body}}
 
   Instructions:
-  1. Fetch the full diff: gh pr diff {{source_id}} --repo {{ .github_user }}/{{ .github_repo }}
+  1. Fetch the full diff: gh pr diff {{source_id}} --repo << .github_user >>/<< .github_repo >>
   2. Read the diff carefully, noting each changed file and the nature of the changes
   3. For any files where you need more context, read the full file
   4. Check that the changes match what the PR description claims
@@ -44,4 +44,4 @@ prompt_template: |
      - Comment if you have non-blocking suggestions
      - Request changes if there are issues that need to be fixed
   7. Remove the "review-agent" label after review:
-     gh pr edit {{source_id}} --repo {{ .github_user }}/{{ .github_repo }} --remove-label review-agent
+     gh pr edit {{source_id}} --repo << .github_user >>/<< .github_repo >> --remove-label review-agent

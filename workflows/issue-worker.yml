@@ -9,8 +9,8 @@ agent: worker
 
 source:
   type: github_issues
-  owner: {{ .github_user }}
-  repo: {{ .github_repo }}
+  owner: << .github_user >>
+  repo: << .github_repo >>
   labels:
     - agent
   state: open
@@ -34,5 +34,5 @@ prompt_template: |
   3. Implement the changes described in the issue
   4. Run tests to verify: cargo test
   5. Commit with a descriptive message referencing the issue
-  6. Push and create a PR: gh pr create --repo {{ .github_user }}/{{ .github_repo }} --title "{{title}}" --body "Closes #{{source_id}}"
-  7. Close the issue: gh issue close {{source_id}} --repo {{ .github_user }}/{{ .github_repo }}
+  6. Push and create a PR: gh pr create --repo << .github_user >>/<< .github_repo >> --title "{{title}}" --body "Closes #{{source_id}}"
+  7. Close the issue: gh issue close {{source_id}} --repo << .github_user >>/<< .github_repo >>

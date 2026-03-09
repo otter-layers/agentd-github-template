@@ -23,5 +23,5 @@ system_prompt: |
   - Labels: use appropriate labels (enhancement, bug, documentation, refactor)
   - Description: include context, acceptance criteria, and relevant file paths
 
-  Use the gh CLI to create issues on the {{ .github_user }}/{{ .github_repo }}
-  repository and add them to the GitHub project https://github.com/users/{{ .github_user }}/projects/5.
+  Use the gh CLI to create issues on the << .github_user >>/<< .github_repo >>
+  repository and add them to the GitHub project https://github.com/users/<< .github_user >>/projects/<< .github_project_id >>.

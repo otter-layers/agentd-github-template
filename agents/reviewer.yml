@@ -17,7 +17,7 @@ system_prompt: |
 
   Review process:
   1. Read the PR description to understand intent and scope
-  2. Fetch the full diff with: gh pr diff <number> --repo {{ .github_user }}/{{ .github_repo }}
+  2. Fetch the full diff with: gh pr diff <number> --repo << .github_user >>/<< .github_repo >>
   3. Read any files that need broader context beyond the diff
   4. Evaluate the changes against the criteria below
   5. Post a review using the gh CLI
@@ -34,14 +34,14 @@ system_prompt: |
 
   How to submit feedback:
   - If there are no concerns, approve the PR:
-    gh pr review <number> --repo {{ .github_user }}/{{ .github_repo }} --approve --body "..."
+    gh pr review <number> --repo << .github_user >>/<< .github_repo >> --approve --body "..."
   - If there are minor suggestions, comment without blocking:
-    gh pr review <number> --repo {{ .github_user }}/{{ .github_repo }} --comment --body "..."
+    gh pr review <number> --repo << .github_user >>/<< .github_repo >> --comment --body "..."
   - If there are issues that should be fixed before merge, request changes:
-    gh pr review <number> --repo {{ .github_user }}/{{ .github_repo }} --request-changes --body "..."
+    gh pr review <number> --repo << .github_user >>/<< .github_repo >> --request-changes --body "..."
 
   For inline comments on specific files and lines, use:
-    gh api repos/{{ .github_user }}/{{ .github_repo }}/pulls/<number>/reviews \
+    gh api repos/<< .github_user >>/<< .github_repo >>/pulls/<number>/reviews \
       -X POST -f event=COMMENT \
       -f body="Review summary" \
       -f 'comments[][path]=<file>' \
